@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* Reset some default styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            
+            
+            
+             
+        }
+
+        #section1 {
+             
+            background-color: #ee6969;
+            
+            text-align: center;
+        }
+
+        .profile img {
+            margin-top: 25px;
+            max-width: 100px;
+            border-radius: 50%;
+            background-color: #fbfbfb;
+            padding: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .profile h1 {
+             color: #ffffff;
+             font-size: 30px;
+             margin: 15px;
+
+        }
+
+        .profile  .socialMedia a img{
+             width: 40px;
+             height: 40px;
+             margin: 10px;
+            border: 1px black solid;
+
+        }
+
+        .profile p {
+             color: #ffffff;
+             font-size: 15px;
+             margin: 0px;
+
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact a {
+            text-decoration: none;
+            margin: 10px;
+            padding: 10px 35px;
+            color: #fff;
+            border-radius: 5px;
+            width: 20%;
+            box-shadow: 2px 2px 5px rgb(0, 0, 0);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .contact .whatsapp {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .contact .email {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .contact a:hover {
+            background-color: #000000;
+            color: white;
+        }
+
+        
+        #section2 , #section3{
+            text-align: left;
+            background-color: #617a88;
+            padding: 15px;
+            
+            
+            
+            
+        }
+
+        #section3 h2{
+            align-items: center;
+            text-align: center;
+            color: #fbfbfb;
+        }
+        
+
+        #section2 p {
+            color: #ffffff;
+            font-size: 14px;
+        }
+        #section2 h1 {
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .project-grid {
+    display: inline;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    /* Add any other styles you need for this container */
+}
+
+
+        .project {
+            width: 25%;
+            margin: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            color: #565656;
+            max-height: 250px;
+        }
+
+        .project img {
+            max-width: 60%;
+             
+        }
+
+        #section4 {
+            background-color: #7e562c;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+             
+            
+        }
+
+        footer {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <section id="section2">
+            <h1>Hello [Recipient's Name],</h1>
+            <p>  
+                My name is <strong>Omar Driouch</strong>, and I'm reaching out to express my interest in joining your organization as a Software Developer. I'm confident that I can contribute valuable skills and innovative ideas to your team's success.<br><br>
+                I appreciate your consideration and look forward to discussing how my qualifications align with your needs. <br><br>Please feel free to contact me.
+              
+                </p>
+                  
+        </section>
+
+        <section id="section1">
+            <div class="profile">
+                <img src="https://media.licdn.com/dms/image/D4E03AQGuAvN8vGmQZA/profile-displayphoto-shrink_400_400/0/1689518933916?e=1702512000&v=beta&t=Xot8d8XUbeN-aK3BlcyaA6aJk2Oyz2xMAgYPIs1rhIk" alt="Profile Image">
+                <h1 >Omar Driouch</h1>
+                <p >Software Developer</p>
+
+                <div class="socialMedia">
+
+                    <a href="#"><img src="https://img.icons8.com/?size=512&id=44019&format=png" alt="Linkedin"></a>
+                    <a href="#"><img src="https://img.icons8.com/?size=512&id=52539&format=png" alt="Github"></a>
+                    <a href="#"><img src="https://img.icons8.com/?size=512&id=bG29Ckcdp6YP&format=png" alt="Twitter"></a>
+                    <a href="#"><img src="https://img.icons8.com/?size=512&id=44019&format=png" alt=""></a>
+                        
+                   
+               </div>
+                <div class="contact">
+                    <a class="whatsapp" href="tel:+212626880354">Whatsapp</a>
+                    <a class="email" href="mailto:Omardriouch29@email.com">Email</a>
+                </div>
+
+            </div>
+        </section>
+
+        
+
+        <section id="section3">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR2tLc__7eRtrqlymthDcaYgT_CyYzgbCxPc3PsLYIdg7zgbIV-xnsB4uy1XxYPYayr7I&usqp=CAU" alt="Project 1">
+                    <h3>Dynamic Email Template</h3>
+                </div>
+                <div class="project">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSduK0wEnWQX9nEKLOIEkE-4h0F-gPkjp2fWA&usqp=CAU" alt="Project 2">
+                    <h3>Password  Manger App </h3>
+                </div>
+                <div class="project">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjA6E40DSodPGi8AXNDkTqOJn6E7v_aMI1Sw&usqp=CAU" alt="Project 3">
+                    <h3>Unix Bash  Shell</h3>
+                </div>
+            </div>
+        </section> 
+        
+        <section id="section4">
+        <footer>
+            &copy; 2023 OMAR DRIOUCH | All Rights Reserved
+        </footer>
+    </section>
+    </div>
+
+   
+</body>
+</html>
