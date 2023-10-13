@@ -7,7 +7,7 @@ const smtpPort = 587;
 const senderEmail = 'omardriouch29@gmail.com'; 
 const senderName = 'Omar Driouch'; // Replace 'Your Name' with the desired "from" name
 const subject = 'Software Developer';
-const cvAttachmentPath = './Omar driouch Cv.pdf'; 
+const cvAttachmentPath = './OMAR DRIOUCH RESUME.pdf'; 
 const emailInterval = 5000; 
 
 const rl = readline.createInterface({
