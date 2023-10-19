@@ -8,7 +8,7 @@ const smtpPort = 587;
 const senderEmail = 'omardriouch29@gmail.com';
 const senderName = 'Omar Driouch';
 const subject = 'Software Developer';
-const emailInterval = 5000;
+const emailInterval = 10;
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -19,7 +19,7 @@ rl.question('Enter your email password (will not be displayed): ', (password) =>
   rl.close();
 
   const recipientEmails = fs
-    .readFileSync('recipient_emails.txt', 'utf8')
+    .readFileSync('recipient_email.txt', 'utf8')
     .split('\n')
     .filter(email => email.trim() !== '');
 
@@ -40,43 +40,39 @@ rl.question('Enter your email password (will not be displayed): ', (password) =>
     return email;
   };
 
-  const sendEmail = (recipientEmail) => {
-    const recipientName = extractRecipientName(recipientEmail);
+  const sendEmails = async () => {
+    for (const recipientEmail of recipientEmails) {
+      if (!isEmailSent(recipientEmail)) {
+        const recipientName = extractRecipientName(recipientEmail);
+        const personalizedMessage = fs.readFileSync('message.html', 'utf8').replace('[Recipient\'s Name]', recipientName);
 
-    const personalizedMessage = fs.readFileSync('message.html', 'utf8').replace('[Recipient\'s Name]', recipientName);
+        const mailOptions = {
+          from: `"${senderName}" <${senderEmail}>`,
+          to: recipientEmail,
+          subject: subject,
+          html: personalizedMessage,
+          attachments: getAttachments()
+        };
 
-    const mailOptions = {
-      from: `"${senderName}" <${senderEmail}>`,
-      to: recipientEmail,
-      subject: subject,
-      html: personalizedMessage,
-      attachments: getAttachments()
-    };
-
-    transporter.sendMail(mailOptions, (error) => {
-      if (error) {
-        console.error(`Error sending email to ${recipientEmail}:`, error);
+        try {
+          await sendEmail(transporter, mailOptions);
+          markEmailAsSent(recipientEmail);
+          console.log(`Email sent successfully to ${recipientEmail} (${recipientName})!`);
+        } catch (error) {
+          console.error(`Error sending email to ${recipientEmail}:`, error);
+        }
       } else {
-        console.log(`Email sent successfully to ${recipientEmail} (${recipientName})!`);
+        console.log(`Email to ${recipientEmail} has already been sent. Skipping.`);
       }
 
-      sendNextEmailWithDelay();
-    });
-  };
-
-  let currentIndex = 0;
-
-  const sendNextEmailWithDelay = () => {
-    if (currentIndex < recipientEmails.length) {
-      sendEmail(recipientEmails[currentIndex]);
-      currentIndex++;
-    } else {
-      console.log('All emails sent. Script completed.');
-      process.exit(0);
+      await sleep(emailInterval);
     }
+
+    console.log('All emails sent. Script completed.');
+    process.exit(0);
   };
 
-  sendNextEmailWithDelay();
+  sendEmails();
 
   console.log('Email automation script is running. Press Ctrl+C to exit.');
 });
@@ -86,8 +82,35 @@ function getAttachments() {
 
   const attachments = fs.readdirSync(attachmentFolderPath).map((fileName) => ({
     path: path.join(attachmentFolderPath, fileName),
-    filename: fileName 
+    filename: fileName
   }));
 
   return attachments;
+}
+
+function isEmailSent(email) {
+  const sentEmails = fs.readFileSync('sent_emails.txt', 'utf8').split('\n');
+  return sentEmails.includes(email);
+}
+
+function markEmailAsSent(email) {
+  fs.appendFileSync('sent_emails.txt', email + '\n');
+}
+
+function sendEmail(transporter, mailOptions) {
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
